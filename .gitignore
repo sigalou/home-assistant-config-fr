@@ -1,5 +1,15 @@
 secrets.yaml
 
+.cloud/*
+.storage/*
+blueprints/*
+custom_components/*
+deps/*
+image/*
+python_scripts/config.ini
+tts/*
+www/*
+
 log/*
 !log/.htaccess
 
