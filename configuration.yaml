@@ -1,0 +1,155 @@
+
+# Loads default set of integrations. Do not remove.
+default_config:
+
+
+spotcast:
+  sp_dc: !secret spotcast-sp_dc
+  sp_key: !secret spotcast-sp_key 
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+      
+# Text to speech
+tts:
+  - platform: google_translate
+
+homeassistant: 
+  whitelist_external_dirs:
+    - /config/
+
+
+
+  customize_domain: !include customize_domain.yaml 
+  customize: !include customize.yaml 
+  customize_glob: !include customize_glob.yaml 
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+sensor: !include sensors.yaml
+binary_sensor: !include binary_sensors.yaml
+mqtt: !include mqtt.yaml
+shell_command: !include shell_command.yaml
+
+logger:
+  default: info
+#  logs:
+#     custom_components.seventeentrack: debug
+
+input_number:
+  days_to_show:
+    name: days_to_show
+    initial: 7
+    min: 1
+    max: 365
+    step: 1
+
+
+rest:
+  - scan_interval: 3600
+    resource: https://www.data.economie.gouv.fr/api/records/1.0/search/?dataset=prix-carburants-fichier-instantane-test-ods-copie&q=84110001&refine.prix_nom=Gazole
+    method: GET
+    sensor:
+      - name: "carburant_Total_Vaison"
+        json_attributes_path: "$.records[0].fields"
+        value_template: "Total Access VAISON"
+        json_attributes:
+          - "prix_maj"
+          - "prix_valeur"
+  - scan_interval: 3600
+    resource: https://www.data.economie.gouv.fr/api/records/1.0/search/?dataset=prix-carburants-fichier-instantane-test-ods-copie&q=84260001&refine.prix_nom=Gazole
+    method: GET
+    sensor:
+      - name: "carburant_Inter_Sarrians"
+        json_attributes_path: "$.records[0].fields"
+        value_template: "Intermarché SARRIANS"
+        json_attributes:
+          - "prix_maj"
+          - "prix_valeur"
+  - scan_interval: 3600
+    resource: https://www.data.economie.gouv.fr/api/records/1.0/search/?dataset=prix-carburants-fichier-instantane-test-ods-copie&q=84130011&refine.prix_nom=Gazole
+    method: GET
+    sensor:
+      - name: "carburant_Total_Pontet"
+        json_attributes_path: "$.records[0].fields"
+        value_template: "Total Access PONTET"
+        json_attributes:
+          - "prix_maj"
+          - "prix_valeur"
+  - scan_interval: 3600
+    resource: https://www.data.economie.gouv.fr/api/records/1.0/search/?dataset=prix-carburants-fichier-instantane-test-ods-copie&q=84110005&refine.prix_nom=Gazole
+    method: GET
+    sensor:
+      - name: "carburant_Inter_StRomain"
+        json_attributes_path: "$.records[0].fields"
+        value_template: "Intermarché ST ROMAIN"
+        json_attributes:
+          - "prix_maj"
+          - "prix_valeur"
+  - scan_interval: 3600
+    resource: https://www.data.economie.gouv.fr/api/records/1.0/search/?dataset=prix-carburants-fichier-instantane-test-ods-copie&q=84110004&refine.prix_nom=Gazole
+    method: GET
+    sensor:
+      - name: "carburant_SuperU_Vaison"
+        json_attributes_path: "$.records[0].fields"
+        value_template: "Super U VAISON"
+        json_attributes:
+          - "prix_maj"
+          - "prix_valeur"
+
+
+#sonoff:
+#  devices:
+#    10008f7a3c:
+#      name: MonEquipement
+#      device_class: light
+
+#Base de données
+recorder:
+  include:
+    domains:
+      - sensor
+      - input_boolean
+      - input_datetime
+      - input_number
+      - input_select
+      - input_text
+      - binary_sensor
+      - light
+      - cover
+    entity_globs:
+      - sensor.carburant*
+  exclude:
+    domains:
+      - automation
+      - alarm_control_panel
+      - calendar
+      - camera
+      - climate
+      - device_tracker
+      - group
+      - media_player
+      - person
+      - proximity
+      - scene
+      - script
+      - sun
+      - switch
+      - timer
+      - vacuum
+      - weather
+      - zone
+      - zwave
+    event_types:
+      - automation_triggered
+      - script_started
+      - service_registered
+      - home_assistant_start
+      - home_assistant_stop
+      - home_assistant_stop
+    entities:
+      - sun.sun
+      - sensor.last_boot
+      - sensor.date
+      - sensor.time

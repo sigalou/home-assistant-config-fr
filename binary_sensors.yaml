@@ -1,0 +1,95 @@
+  - platform: ping
+    host: !secret ip_portail
+    name: ping_portail
+    #friendly_name: Portail
+    #unique_id: binary_sensor.ping_portail
+    #scan_interval: 1 #interval en seconde, 5 min par défaut
+    #count: 2 #nb de paquet à envoyer entre 1 et 100, 5 par défaut
+
+  - platform: template
+    sensors:
+      vacances_scolaires_aujourdhui:
+        friendly_name: "Vacances Scolaires aujourd'hui"
+        value_template: |-
+          {% set aujourdhui = now().strftime('%Y-%m-%d')%}
+          {% if aujourdhui < states.sensor.vacances_scolaires.attributes["start_date"] or aujourdhui > states.sensor.vacances_scolaires.attributes["end_date"] %}
+          false
+          {% else %} 
+          true
+          {% endif %}
+
+  - platform: template
+    sensors:
+      vacances_scolaires_demain:
+        friendly_name: "Vacances Scolaires demain"
+        value_template: |-
+          {% set demain = (as_timestamp(now()) + (24*3600)) | timestamp_custom('%Y-%m-%d', True) %}
+          {% if demain < states.sensor.vacances_scolaires.attributes["start_date"] or demain > states.sensor.vacances_scolaires.attributes["end_date"] %} 
+          false
+          {% else %} 
+          true
+          {% endif %}
+
+
+  - platform: template
+    sensors:
+      pronote_edt_coralie_aujourdhui_cours_0_annulation:
+        friendly_name: "Edt coralie Cours 0 annulation"
+        value_template: >-
+          {{ state_attr('sensor.pronote_edt_coralie_aujourdhui', 'edt_aujourdhui')[0]['annulation'] }}
+      pronote_edt_coralie_aujourdhui_cours_1_annulation:
+        friendly_name: "Edt coralie Cours 1 annulation"
+        value_template: >-
+          {{ state_attr('sensor.pronote_edt_coralie_aujourdhui', 'edt_aujourdhui')[1]['annulation'] }}
+      pronote_edt_coralie_aujourdhui_cours_2_annulation:
+        friendly_name: "Edt coralie Cours 2 annulation"
+        value_template: >-
+          {{ state_attr('sensor.pronote_edt_coralie_aujourdhui', 'edt_aujourdhui')[2]['annulation'] }}
+      pronote_edt_coralie_aujourdhui_cours_3_annulation:
+        friendly_name: "Edt coralie Cours 3 annulation"
+        value_template: >-
+          {{ state_attr('sensor.pronote_edt_coralie_aujourdhui', 'edt_aujourdhui')[3]['annulation'] }}
+      pronote_edt_coralie_aujourdhui_cours_4_annulation:
+        friendly_name: "Edt coralie Cours 4 annulation"
+        value_template: >-
+          {{ state_attr('sensor.pronote_edt_coralie_aujourdhui', 'edt_aujourdhui')[4]['annulation'] }}
+      pronote_edt_coralie_aujourdhui_cours_5_annulation:
+        friendly_name: "Edt coralie Cours 5 annulation"
+        value_template: >-
+          {{ state_attr('sensor.pronote_edt_coralie_aujourdhui', 'edt_aujourdhui')[5]['annulation'] }}
+      pronote_edt_coralie_aujourdhui_cours_6_annulation:
+        friendly_name: "Edt coralie Cours 6 annulation"
+        value_template: >-
+          {{ state_attr('sensor.pronote_edt_coralie_aujourdhui', 'edt_aujourdhui')[6]['annulation'] }}
+
+  - platform: template
+    sensors:
+      pronote_edt_coralie_prochain_jour_cours_0_annulation:
+        friendly_name: "Edt coralie Prochain Jour Cours 0 annulation"
+        value_template: >-
+          {{ state_attr('sensor.pronote_edt_coralie_prochain_jour', 'edt_prochainjour')[0]['annulation'] }}
+      pronote_edt_coralie_prochain_jour_cours_1_annulation:
+        friendly_name: "Edt coralie Prochain Jour Cours 1 annulation"
+        value_template: >-
+          {{ state_attr('sensor.pronote_edt_coralie_prochain_jour', 'edt_prochainjour')[1]['annulation'] }}
+      pronote_edt_coralie_prochain_jour_cours_2_annulation:
+        friendly_name: "Edt coralie Prochain Jour Cours 2 annulation"
+        value_template: >-
+          {{ state_attr('sensor.pronote_edt_coralie_prochain_jour', 'edt_prochainjour')[2]['annulation'] }}
+      pronote_edt_coralie_prochain_jour_cours_3_annulation:
+        friendly_name: "Edt coralie Prochain Jour Cours 3 annulation"
+        value_template: >-
+          {{ state_attr('sensor.pronote_edt_coralie_prochain_jour', 'edt_prochainjour')[3]['annulation'] }}
+      pronote_edt_coralie_prochain_jour_cours_4_annulation:
+        friendly_name: "Edt coralie Prochain Jour Cours 4 annulation"
+        value_template: >-
+          {{ state_attr('sensor.pronote_edt_coralie_prochain_jour', 'edt_prochainjour')[4]['annulation'] }}
+      pronote_edt_coralie_prochain_jour_cours_5_annulation:
+        friendly_name: "Edt coralie Prochain Jour Cours 5 annulation"
+        value_template: >-
+          {{ state_attr('sensor.pronote_edt_coralie_prochain_jour', 'edt_prochainjour')[5]['annulation'] }}
+      pronote_edt_coralie_prochain_jour_cours_6_annulation:
+        friendly_name: "Edt coralie Prochain Jour Cours 6 annulation"
+        value_template: >-
+          {{ state_attr('sensor.pronote_edt_coralie_prochain_jour', 'edt_prochainjour')[6]['annulation'] }}
+

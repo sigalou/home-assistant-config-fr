@@ -1,0 +1,7 @@
+#binary_sensor.fenetre_de_coralie_contact:
+  #  icon: mdi:home
+#  templates:
+#    icon: "if (state === 'on') return 'mdi:window-open-variant'; else return 'mdi:window-closed-variant';"
+
+binary_sensor.ping_portail:
+  friendly_name: "Portail"
