@@ -1,0 +1,200 @@
+  - platform: seventeentrack
+    username: !secret 17track-username
+    password: !secret 17track-password
+    #show_archived: true
+    show_delivered: true
+    
+    
+  - platform: aftership
+    api_key: !secret aftership-api_key
+    
+    
+  - platform: rest
+    scan_interval: '00:30:00'
+    name: vacances_scolaires
+    json_attributes_path: "$.records[0].fields"
+    json_attributes:
+      - start_date
+      - end_date
+      - description
+    resource_template: |-
+      {% set location = 'Aix-Marseille' %}
+      {% set rows = '1'%}
+      {% set aujourdhui = now().strftime('%Y-%m-%d')%}
+      {% set dayOfYear =  now().strftime('%j') %}
+      {% set year =  now().strftime('%Y') | int %}
+      {% set lastYear = year - 1 %}
+      {% set nextYear = year + 1 %}
+      {% if dayOfYear > '244' %}
+      {% set schoolYear = (year | string) + "-" + (nextYear | string) %}
+      {%- else -%}
+      {% set schoolYear = (lastYear | string) + "-" + (year | string) %}
+      {%- endif %}
+      https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-calendrier-scolaire&facet=start_date&facet=end_date&rows={{rows}}&refine.location={{location}}&sort=-end_date&q=end_date%3E={{aujourdhui}}
+    value_template: |-
+      {% set aujourdhui = now().strftime('%Y-%m-%d')%}
+      {% for record in value_json.records -%}
+      {% if aujourdhui >= record.fields.start_date and aujourdhui <= record.fields.end_date %} 
+      {%- if record.fields.description %}{{record.fields.description}} jusqu'au {{ as_timestamp(record.fields.end_date) | timestamp_custom('%d-%m-%Y') }} {% endif %}
+      {% else %} 
+      {%- if record.fields.end_date > aujourdhui and record.fields.description %} prochaines : {{record.fields.description}} {{ as_timestamp(record.fields.start_date) | timestamp_custom('%d-%m-%Y') }}{% endif %}
+      {% endif %}
+      {%- endfor %}    
+    
+    
+    
+    
+    
+  - platform: template
+    sensors:
+        affichage_graphique_nombredejour:
+            friendly_name: "Nombre de jours à afficher"
+            value_template: 7
+            
+    
+  - platform: rest
+    name: pronote_edt_coralie_aujourdhui 
+    json_attributes:
+      - edt_aujourdhui
+    value_template: >
+        {% if value_json.edt_aujourdhui.0 is defined %}
+            {{ value_json.edt_aujourdhui.0.date_heure }}
+        {% else %}
+            Pas cours
+        {% endif %}
+    resource: http://192.168.1.200:8123/local/pronote_coralie.json
+
+  - platform: rest
+    name: pronote_edt_coralie_aujourdhui_debut
+    unique_id: pronote_edt_coralie_aujourdhui_debut
+    json_attributes:
+      - edt_aujourdhui_debut
+    value_template: >
+        {% if value_json.edt_aujourdhui_debut.0 is defined %}
+            {{ value_json.edt_aujourdhui_debut }}
+        {% else %}
+            Pas cours
+        {% endif %}
+    resource: http://192.168.1.200:8123/local/pronote_coralie.json
+
+  - platform: rest
+    name: pronote_edt_coralie_demain
+    json_attributes:
+      - edt_demain
+    value_template: >
+        {% if value_json.edt_demain.0 is defined %}
+            {{ value_json.edt_demain.0.date_heure }}
+        {% else %}
+            Pas cours demain
+        {% endif %}
+    resource: http://192.168.1.200:8123/local/pronote_coralie.json
+
+  - platform: rest
+    name: pronote_edt_coralie_demain_debut
+    unique_id: pronote_edt_coralie_demain_debut
+    json_attributes:
+      - edt_demain_debut
+    value_template: >
+        {% if value_json.edt_demain_debut.0 is defined %}
+            {{ value_json.edt_demain_debut }}
+        {% else %}
+            Pas cours demain
+        {% endif %}
+    resource: http://192.168.1.200:8123/local/pronote_coralie.json
+
+
+  - platform: rest
+    name: pronote_edt_coralie_prochainjour
+    json_attributes:
+      - edt_prochainjour
+    value_template: >
+        {% if value_json.edt_prochainjour.0 is defined %}
+            {{ value_json.edt_prochainjour.0.date_heure }}
+        {% else %}
+            None
+        {% endif %}
+    resource: http://192.168.1.200:8123/local/pronote_coralie.json
+
+
+  - platform: rest
+    name: pronote_edt_coralie_prochainjour_debut
+    unique_id: pronote_edt_coralie_prochainjour_debut
+    json_attributes:
+      - edt_prochainjour_debut
+    value_template: >
+        {% if value_json.edt_prochainjour_debut.0 is defined %}
+            {{ value_json.edt_prochainjour_debut }}
+        {% else %}
+            None
+        {% endif %}
+    resource: http://192.168.1.200:8123/local/pronote_coralie.json
+
+
+
+  - platform: rest
+    name: pronote_eval_coralie
+    json_attributes:
+      - evaluation
+    value_template: >
+        {% if value_json.eval.0 is defined %}
+            {{ value_json.eval.0.eval }}  
+        {% else %}
+            None
+        {% endif %}
+    resource: http://192.168.1.200:8123/local/pronote_coralie.json
+
+  - platform: rest
+    name: pronote_devoir_coralie
+    json_attributes:
+      - devoir
+    value_template: >
+        {% if value_json.devoir.0 is defined %}
+            {{ value_json.devoir.0.date }} / {{ value_json.devoir.0.title }} 
+        {% else %}
+            None
+        {% endif %}
+    resource: http://192.168.1.200:8123/local/pronote_coralie.json
+
+
+  - platform: rest
+    name: pronote_absence_coralie
+    json_attributes:
+      - absence
+    value_template: >
+        {% if value_json.absence.0 is defined %}
+            {{ value_json.absence.0.date_debut }} - {{ value_json.absence.0.nb_jours}}j - {{value_json.absence.0.nb_heures}}
+        {% else %}
+            None
+        {% endif %}
+    resource: http://192.168.1.200:8123/local/pronote_coralie.json
+
+  - platform: template
+    sensors:
+        pronote_edt_coralie_aujourdhui_cours_0_heure:
+            friendly_name: "coralie / Début des cours"
+            value_template: >-            
+                {% if state_attr('sensor.pronote_edt_coralie_aujourdhui', 'edt_aujourdhui')[0] is defined %}
+                    {{state_attr('sensor.pronote_edt_coralie_aujourdhui', 'edt_aujourdhui')[0]['heure']}}
+                {% else %}
+                    Pas cours
+                {% endif %}                
+                
+        pronote_edt_coralie_demain_cours_0_heure:
+            friendly_name: "coralie / Début des cours demain"
+            value_template: >-            
+                {% if state_attr('sensor.pronote_edt_coralie_demain', 'edt_demain')[0] is defined %}
+                    {{state_attr('sensor.pronote_edt_coralie_demain', 'edt_demain')[0]['heure']}}
+                {% else %}
+                    Pas cours
+                {% endif %}            
+        pronote_edt_coralie_prochainjour_cours_0_heure:
+            friendly_name: "coralie / Début des cours (J+1)"
+            value_template: >-
+                {% if state_attr('sensor.pronote_edt_coralie_prochainjour', 'edt_prochainjour')[0] is defined %}
+                    {{state_attr('sensor.pronote_edt_coralie_prochainjour', 'edt_prochainjour')[0]['heure']}}  
+                {% else %}
+                    Pas cours
+                {% endif %}        
+
+    
+    
