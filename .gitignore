@@ -1,0 +1,9 @@
+secrets.yaml
+
+log/*
+!log/.htaccess
+
+tmp/*
+!tmp/.htaccess
+
+!.htaccess
