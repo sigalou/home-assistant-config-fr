@@ -1,0 +1,88 @@
+- id: '1681635429857'
+  alias: Test Pushover
+  description: ''
+  trigger: []
+  condition: []
+  action:
+  - service: notify.coralie
+    data:
+      message: Coralie est rentrée de l'école
+      title: Coco
+      data:
+        sound: falling
+        priority: 0
+  mode: single
+- id: '1682527045539'
+  alias: Porte entrée Verrouillée
+  description: ''
+  trigger:
+  - platform: device
+    domain: mqtt
+    device_id: ecb7492abdea060d65e0d36f6689e645
+    type: action
+    subtype: lock
+    discovery_id: 0x50325ffffecfc25e action_lock
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      rgb_color:
+      - 11
+      - 124
+      - 3
+      brightness_pct: 5
+    target:
+      entity_id: light.passerellerdc
+  mode: single
+- id: '1682527157707'
+  alias: Porte d'entrée Déverrouillée
+  description: ''
+  trigger:
+  - platform: device
+    domain: mqtt
+    device_id: ecb7492abdea060d65e0d36f6689e645
+    type: action
+    subtype: unlock
+    discovery_id: 0x50325ffffecfc25e action_unlock
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      rgb_color:
+      - 243
+      - 93
+      - 253
+      brightness: 5
+    target:
+      entity_id: light.passerellerdc
+  mode: single
+- id: '1684252672314'
+  alias: Mise à jour Pronote
+  description: ''
+  trigger:
+  - platform: time_pattern
+    seconds: /20
+  condition:
+  - type: is_on
+    condition: device
+    device_id: 64bbc75616d4864596e1fd861c865904
+    entity_id: binary_sensor.workday
+    domain: binary_sensor
+  action:
+  - service: shell_command.update_pronote
+    data: {}
+  mode: single
+- id: '1684351066435'
+  alias: Coralie a une nouvelle note
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.pronote_eval_coralie
+  condition: []
+  action:
+  - service: notify.coralie
+    data:
+      message: 'Coralie a une nouvelle note : {{states(''sensor.pronote_eval_coralie'')}}'
+      title: Nouvelle note
+  mode: single

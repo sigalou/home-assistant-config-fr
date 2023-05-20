@@ -1,5 +1,8 @@
            
-          
+####################################################################################################################################################################################################################################################################################################################################################
+####    Intégration de PRONOTE
+####################################################################################################################################################################################################################################################################################################################################################
+         
   - sensor: 
       - name: pronote_edt_coralie_aujourdhui_cours_0_heure
         state: >-            
@@ -8,7 +11,6 @@
                 {% else %}
                     Pas cours
                 {% endif %}                
-                
   - sensor: 
       - name: pronote_edt_coralie_demain_cours_0_heure
         state: >-            
@@ -17,7 +19,6 @@
                 {% else %}
                     Pas cours
                 {% endif %}      
-            
   - sensor: 
       - name: pronote_edt_coralie_prochainjour_cours_0_heure
         state: >-
@@ -26,31 +27,6 @@
                 {% else %}
                     Pas cours
                 {% endif %}       
-              
-  - binary_sensor:
-      - name: vacances_scolaires_aujourdhui
-        unique_id: binary_sensor.vacances_scolaires_aujourdhui
-        state: |-
-          {% set aujourdhui = now().strftime('%Y-%m-%d')%}
-          {% if aujourdhui < states.sensor.vacances_scolaires.attributes["start_date"] or aujourdhui > states.sensor.vacances_scolaires.attributes["end_date"] %}
-          false
-          {% else %} 
-          true
-          {% endif %}
-
-  - binary_sensor:
-      - name: vacances_scolaires_demain
-        unique_id: binary_sensor.vacances_scolaires_demain
-        state: |-
-          {% set demain = (as_timestamp(now()) + (24*3600)) | timestamp_custom('%Y-%m-%d', True) %}
-          {% if demain < states.sensor.vacances_scolaires.attributes["start_date"] or demain > states.sensor.vacances_scolaires.attributes["end_date"] %} 
-          false
-          {% else %} 
-          true
-          {% endif %}             
-          
-          
-          
   - binary_sensor:
       - name: pronote_edt_coralie_aujourdhui_cours_0_annulation
         state: >-
@@ -79,7 +55,6 @@
       - name: pronote_edt_coralie_aujourdhui_cours_6_annulation
         state: >-
           {{ state_attr('sensor.pronote_edt_coralie_aujourdhui', 'edt_aujourdhui')[6]['annulation'] }}
-
   - binary_sensor:
       - name: pronote_edt_coralie_prochain_jour_cours_0_annulation
         state: >-
@@ -109,3 +84,27 @@
         state: >-
           {{ state_attr('sensor.pronote_edt_coralie_prochain_jour', 'edt_prochainjour')[6]['annulation'] }}
           
+          
+####################################################################################################################################################################################################################################################################################################################################################
+####    Savoir si nous sommes en VACANCES SCOLAIRES
+####################################################################################################################################################################################################################################################################################################################################################          
+  - binary_sensor:
+      - name: vacances_scolaires_aujourdhui
+        unique_id: binary_sensor.vacances_scolaires_aujourdhui
+        state: |-
+          {% set aujourdhui = now().strftime('%Y-%m-%d')%}
+          {% if aujourdhui < states.sensor.vacances_scolaires.attributes["start_date"] or aujourdhui > states.sensor.vacances_scolaires.attributes["end_date"] %}
+          false
+          {% else %} 
+          true
+          {% endif %}
+  - binary_sensor:
+      - name: vacances_scolaires_demain
+        unique_id: binary_sensor.vacances_scolaires_demain
+        state: |-
+          {% set demain = (as_timestamp(now()) + (24*3600)) | timestamp_custom('%Y-%m-%d', True) %}
+          {% if demain < states.sensor.vacances_scolaires.attributes["start_date"] or demain > states.sensor.vacances_scolaires.attributes["end_date"] %} 
+          false
+          {% else %} 
+          true
+          {% endif %}  

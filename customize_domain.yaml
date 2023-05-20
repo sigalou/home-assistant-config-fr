@@ -1,0 +1,3 @@
+    #light:
+        #icon: mdi:home
+        #icon: "if (state === 'on') return 'mdi:window-open-variant'; else return 'mdi:window-closed-variant';"

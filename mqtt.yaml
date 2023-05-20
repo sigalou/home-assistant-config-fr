@@ -1,0 +1,184 @@
+
+switch:
+  - name: "Aspirateur"
+    unique_id: switch.aspirateur
+    command_topic: "Aspirateur/gpio/0"
+    state_topic: "Aspirateur/Contact/Contact"
+    payload_on: "1"
+    payload_off: "0"
+ 
+  - name: "Jus Frigo Cellier"
+    unique_id: switch.jus_frigo_cellier
+    command_topic: "FrigoCellier/gpio/12"
+    state_topic: "FrigoCellier/Electricite/Jus"
+    payload_on: "1"
+    payload_off: "0"
+    retain: true
+    device_class: outlet
+    device:
+        name: "Frigo Cellier"
+        identifiers: "frigocellier"
+        
+  - name: "Jus Pompe Arrosage"
+    unique_id: switch.jus_pompe_arrosage
+    command_topic: "Pompe Arrosage/gpio/12"
+    state_topic: "Pompe Arrosage/Jus/Jus"
+    payload_on: "1"
+    payload_off: "0"
+    retain: true
+    device_class: outlet
+    device:
+        name: "Pompe Arrosage"
+        identifiers: "pompearrosage"
+  - name: "Zone Rue Pompe Arrosage"
+    unique_id: switch.zone_rue.pompe_arrosage
+    command_topic: "Arrosage/gpio/12"
+    state_topic: "Arrosage/Relais1/Relais1"
+    payload_on: "1"
+    payload_off: "0"
+    retain: true
+    device_class: outlet
+    device:
+        name: "Pompe Arrosage"
+        identifiers: "pompearrosage"        
+  - name: "Zone Terrasse Pompe Arrosage"
+    unique_id: switch.zone_terrasse.pompe_arrosage
+    command_topic: "Arrosage/gpio/4"
+    state_topic: "Arrosage/Relais3/Relais3"
+    payload_on: "1"
+    payload_off: "0"
+    retain: true
+    device_class: outlet
+    device:
+        name: "Pompe Arrosage"
+        identifiers: "pompearrosage"   
+  - name: "Zone Piscine Pompe Arrosage"
+    unique_id: switch.zone_piscine.pompe_arrosage
+    command_topic: "Arrosage/gpio/5"
+    state_topic: "Arrosage/Relais2/Relais2"
+    payload_on: "1"
+    payload_off: "0"
+    retain: true
+    device_class: outlet
+    device:
+        name: "Pompe Arrosage"
+        identifiers: "pompearrosage" 
+#  - name: "LED Bleue"
+#    unique_id: switch.pompe_arrosage_led
+#    command_topic: "Pompe Arrosage/gpio/13"
+#    payload_on: "0"
+#    payload_off: "1"    
+#    state_topic: "Pompe Arrosage/LedBleue/LedBleue"
+#    state_on: "1"
+#    state_off: "0"
+#    retain: true
+#    device:
+#        name: "Pompe Arrosage"
+#        identifiers: "pompearrosage"
+        
+binary_sensor:
+
+  - name: "Flotteur Pompe Arrosage"
+    unique_id: binary_sensor.flotteur_pompe_arrosage
+    state_topic: "Pompe Arrosage/GPIO5/GPIO5"
+    payload_on: "1"
+    payload_off: "0"
+    device_class: moisture
+    device:
+        name: "Pompe Arrosage"
+        identifiers: "pompearrosage"
+
+
+
+        
+device_tracker:
+
+  - name: "Présence Lionel"
+    unique_id: device_tracker.presence_lionel
+    state_topic: "Jeedom/Présences/Lionel"
+    payload_home: "1"
+    payload_not_home: "0"
+    device:
+        name: "Présences"
+        identifiers: "presences"
+
+  - name: "Présence Christel"
+    unique_id: device_tracker.presence_christel
+    state_topic: "Jeedom/Présences/Christel"
+    payload_home: "1"
+    payload_not_home: "0"
+    device:
+        name: "Présences"
+        identifiers: "presences"
+        
+  - name: "Présence Manon"
+    unique_id: device_tracker.presence_manon
+    state_topic: "Jeedom/Présences/Manon"
+    payload_home: "1"
+    payload_not_home: "0"
+    device:
+        name: "Présences"
+        identifiers: "presences"
+        
+  - name: "Présence Coralie"
+    unique_id: device_tracker.presence_coralie
+    state_topic: "Jeedom/Présences/Coralie"
+    payload_home: "1"
+    payload_not_home: "0"
+    device:
+        name: "Présences"
+        identifiers: "presences"
+
+        
+sensor:
+  - name: "Temperature Frigo Cellier"
+    unique_id: sensor.temperature_frigo_cellier
+    state_topic: "FrigoCellier/Sonde/Temperature"
+    state_class: measurement
+    unit_of_measurement: "°C"
+    device_class: temperature
+    device:
+        name: "Frigo Cellier"
+        identifiers: "frigocellier"
+
+  - name: "Humidité Frigo Cellier"
+    unique_id: sensor.humidite_frigo_cellier
+    state_topic: "FrigoCellier/Sonde/Humidity"
+    unit_of_measurement: "%"
+    device_class: humidity
+    device:
+        name: "Frigo Cellier"
+        identifiers: "frigocellier"
+        
+  - name: "Consommation Pompe Arrosage"
+    unique_id: sensor.consommation_pompe_arrosage
+    state_topic: "Pompe Arrosage/Consommation/Power"
+    unit_of_measurement: "W"
+    device_class: power
+    device:
+        name: "Pompe Arrosage"
+        identifiers: "pompearrosage"
+  - name: "Temperature Cabanon Piscine"
+    unique_id: sensor.temperature_cabanon_piscine
+    state_topic: "Arrosage/sonde/Temperature"
+    unit_of_measurement: "°C"
+    device_class: temperature
+    device:
+        name: "Pompe Arrosage"
+        identifiers: "pompearrosage"
+  - name: "Humidité Cabanon Piscine"
+    unique_id: sensor.humidite_cabanon_piscine
+    state_topic: "Arrosage/sonde/Humidity"
+    unit_of_measurement: "%"
+    device_class: humidity
+    device:
+        name: "Pompe Arrosage"
+        identifiers: "pompearrosage"       
+  - name: "Pression Arrosage"
+    unique_id: sensor.pression_pompe_arrosage
+    state_topic: "Arrosage/Pression/Pression"
+    unit_of_measurement: "%"
+    device_class: pressure
+    device:
+        name: "Pompe Arrosage"
+        identifiers: "pompearrosage"     

@@ -1,0 +1,413 @@
+
+s685ip_telephones_8:
+  name: S685IP-Telephones-8
+  mac: 00:01:E3:B8:F1:7C
+  icon:
+  picture:
+  track: true
+
+mobotix:
+  name: mobotix
+  mac: 00:03:C5:03:30:B9
+  icon:
+  picture:
+  track: true
+
+cameramobotixbassin:
+  name: CameraMobotixBassin
+  mac: 00:03:C5:05:84:23
+  icon:
+  picture:
+  track: true
+
+synologynas_13:
+  name: SynologyNAS-13
+  mac: 00:11:32:E9:9E:29
+  icon:
+  picture:
+  track: true
+
+vm:
+  name: VM
+  mac: 02:11:32:22:CB:7E
+  icon:
+  picture:
+  track: true
+
+hp_ethernet:
+  name: HP-Ethernet
+  mac: 14:CB:19:90:E8:AF
+  icon:
+  picture:
+  track: true
+
+alexa_coralie:
+  name: Alexa-Coralie
+  mac: 1C:4D:66:40:F4:2A
+  icon:
+  picture:
+  track: true
+
+chauffage:
+  name: Chauffage
+  mac: 2C:F4:32:AA:67:5F
+  icon:
+  picture:
+  track: true
+
+alexa_salledebains:
+  name: Alexa-SalledeBains
+  mac: 40:A2:DB:F2:12:F9
+  icon:
+  picture:
+  track: true
+
+esp_fdce18:
+  name: ESP_FDCE18
+  mac: 40:F5:20:FD:CE:18
+  icon:
+  picture:
+  track: true
+
+a32_de_coralie:
+  name: A32-de-Coralie
+  mac: 46:F5:73:B7:17:6D
+  icon:
+  picture:
+  track: true
+
+s10_de_lionel:
+  name: S10-de-Lionel
+  mac: 4A:AE:29:E4:F3:22
+  icon:
+  picture:
+  track: true
+
+xiaomirepeater_v2:
+  name: XiaoMiRepeater_V2
+  mac: 52:64:2B:0C:9D:D7
+  icon:
+  picture:
+  track: true
+
+esp_e3a1af:
+  name: ESP_E3A1AF
+  mac: 60:01:94:E3:A1:AF
+  icon:
+  picture:
+  track: true
+
+esp_e642f7:
+  name: ESP_E642F7
+  mac: 60:01:94:E6:42:F7
+  icon:
+  picture:
+  track: true
+
+firetv_chambre:
+  name: FireTV-Chambre
+  mac: 60:6D:3C:23:0D:14
+  icon:
+  picture:
+  track: true
+
+62_32_b1_0e_e5_d1:
+  name: 62-32-b1-0e-e5-d1
+  mac: 62:32:B1:0E:E5:D1
+  icon:
+  picture:
+  track: true
+
+pclionel:
+  name: PCLionel
+  mac: 64:00:6A:06:EA:C3
+  icon:
+  picture:
+  track: true
+
+68_b6_91_8d_ac_c6:
+  name: 68-b6-91-8d-ac-c6
+  mac: 68:B6:91:8D:AC:C6
+  icon:
+  picture:
+  track: true
+
+frigodroite:
+  name: FrigoDroite
+  mac: 68:C6:3A:95:7B:D8
+  icon:
+  picture:
+  track: true
+
+amazonaqm_0109:
+  name: AmazonAQM-0109
+  mac: 6C:99:9D:5E:76:86
+  icon:
+  picture:
+  track: true
+
+galaxy_j5_2016:
+  name: Galaxy-J5-2016
+  mac: 70:28:8B:AE:6D:01
+  icon:
+  picture:
+  track: true
+
+alexa_rose:
+  name: Alexa-Rose
+  mac: 74:58:F3:77:6A:A1
+  icon:
+  picture:
+  track: true
+
+lumi_gateway_v3_miio73057281:
+  name: lumi-gateway-v3_miio73057281
+  mac: 78:11:DC:6C:86:34
+  icon:
+  picture:
+  track: true
+
+lumi_gateway_v3_miio78464996:
+  name: lumi-gateway-v3_miio78464996
+  mac: 78:11:DC:B2:73:8A
+  icon:
+  picture:
+  track: true
+
+energy:
+  name: Energy
+  mac: 78:21:84:C8:58:5C
+  icon:
+  picture:
+  track: true
+
+esp_01b9b7:
+  name: ESP_01B9B7
+  mac: 80:7D:3A:01:B9:B7
+  icon:
+  picture:
+  track: true
+
+jeedom:
+  name: jeedom
+  mac: 80:EE:73:B6:84:AF
+  icon:
+  picture:
+  track: true
+
+ipad_de_user:
+  name: iPad-de-user
+  mac: 98:E0:D9:BC:25:83
+  icon:
+  picture:
+  track: true
+
+d1mini:
+  name: D1Mini
+  mac: 98:F4:AB:E4:7C:BF
+  icon:
+  picture:
+  track: true
+
+tvchambre_wifi:
+  name: TVChambre-Wifi
+  mac: A0:0B:BA:F4:D2:9C
+  icon:
+  picture:
+  track: true
+
+espressif_inc:
+  name: Espressif Inc.
+  mac: A4:CF:12:B5:DE:FE
+  icon:
+  picture:
+  track: true
+
+diypowr3:
+  name: DIYPOWR3
+  mac: A4:CF:12:B7:7E:B1
+  icon:
+  picture:
+  track: true
+
+wazo_9:
+  name: Wazo-9
+  mac: B8:27:EB:00:B6:66
+  icon:
+  picture:
+  track: true
+
+esclave:
+  name: esclave
+  mac: B8:27:EB:45:EF:F5
+  icon:
+  picture:
+  track: true
+
+jeedom_maitre:
+  name: Jeedom-Maitre
+  mac: B8:27:EB:8D:65:14
+  icon:
+  picture:
+  track: true
+
+raspizero:
+  name: RaspiZero
+  mac: B8:27:EB:A9:1B:00
+  icon:
+  picture:
+  track: true
+
+raspberry_pi_foundation:
+  name: Raspberry Pi Foundation
+  mac: B8:27:EB:CD:7C:09
+  icon:
+  picture:
+  track: true
+
+m2102j20sg:
+  name: M2102J20SG
+  mac: B8:3B:CC:C7:19:32
+  icon:
+  picture:
+  track: true
+
+esp_b63dd7:
+  name: ESP_B63DD7
+  mac: C4:4F:33:B6:3D:D7
+  icon:
+  picture:
+  track: true
+
+alexa_couloiretage:
+  name: Alexa-CouloirEtage
+  mac: C4:95:00:B1:E0:B1
+  icon:
+  picture:
+  track: true
+
+c8_2b_96_e6_94_c6:
+  name: c8-2b-96-e6-94-c6
+  mac: C8:2B:96:E6:94:C6
+  icon:
+  picture:
+  track: true
+
+esp_1398e4:
+  name: ESP_1398E4
+  mac: D8:BF:C0:13:98:E4
+  icon:
+  picture:
+  track: true
+
+esp_fa7d0d:
+  name: ESP_FA7D0D
+  mac: D8:F1:5B:FA:7D:0D
+  icon:
+  picture:
+  track: true
+
+espressif_inc_2:
+  name: Espressif Inc.
+  mac: DC:4F:22:81:CE:E7
+  icon:
+  picture:
+  track: true
+
+aspirateur:
+  name: Aspirateur
+  mac: DC:4F:22:A8:B6:A0
+  icon:
+  picture:
+  track: true
+
+espressif_inc_3:
+  name: Espressif Inc.
+  mac: DC:4F:22:AB:74:B2
+  icon:
+  picture:
+  track: true
+
+homeassistant:
+  name: homeassistant
+  mac: DC:A6:32:44:09:59
+  icon:
+  picture:
+  track: true
+
+pc_christel_eth:
+  name: PC-Christel-Eth
+  mac: DC:FE:07:D5:1C:CC
+  icon:
+  picture:
+  track: true
+
+spm:
+  name: SPM
+  mac: E0:E2:E6:0B:A5:C4
+  icon:
+  picture:
+  track: true
+
+ec_8a_c4_92_c6_91:
+  name: ec-8a-c4-92-c6-91
+  mac: EC:8A:C4:92:C6:91
+  icon:
+  picture:
+  track: true
+
+frigogauche:
+  name: FrigoGauche
+  mac: EC:FA:BC:00:8D:37
+  icon:
+  picture:
+  track: true
+
+amazon_200eb598c:
+  name: amazon-200eb598c
+  mac: F0:81:73:BC:A3:1B
+  icon:
+  picture:
+  track: true
+
+porche:
+  name: Porche
+  mac: B0:C5:54:00:20:2C
+  icon:
+  picture:
+  track: true
+
+cameravoitures_poe2:
+  name: CameraVoitures-POE2
+  mac: B0:C5:54:38:54:EB
+  icon:
+  picture:
+  track: true
+
+cameraaxispiscine_poe4:
+  name: CameraAxisPiscine-POE4
+  mac: 00:40:8C:8E:1D:A3
+  icon:
+  picture:
+  track: true
+
+d4_ad_fc_bd_07_e6:
+  name: d4-ad-fc-bd-07-e6
+  mac: D4:AD:FC:BD:07:E6
+  icon:
+  picture:
+  track: true
+
+78_c8_81_a9_a9_5f:
+  name: 78-c8-81-a9-a9-5f
+  mac: 78:C8:81:A9:A9:5F
+  icon:
+  picture:
+  track: true
+
+amazon_5e8e86f2d:
+  name: amazon-5e8e86f2d
+  mac: 74:A7:EA:7A:6B:9D
+  icon:
+  picture:
+  track: true

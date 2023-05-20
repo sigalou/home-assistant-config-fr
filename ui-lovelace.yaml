@@ -1,0 +1,4 @@
+title: ui-lovelace
+
+decluttering_templates:
+  !include www/lovelace-maison/decluttering_templates.yaml
