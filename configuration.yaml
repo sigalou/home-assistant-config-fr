@@ -31,6 +31,7 @@ sensor: !include sensors.yaml
 binary_sensor: !include binary_sensors.yaml
 mqtt: !include mqtt.yaml
 shell_command: !include shell_command.yaml
+template: !include templates.yaml
 
 logger:
   default: info
