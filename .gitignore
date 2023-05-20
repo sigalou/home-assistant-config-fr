@@ -9,6 +9,8 @@ image/*
 python_scripts/config.ini
 tts/*
 www/*
+known_devices.yml
+
 
 log/*
 !log/.htaccess
