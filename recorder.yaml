@@ -1,0 +1,73 @@
+  purge_keep_days: 20 # Défaut 10 - Spécifiez le nombre de jours d'historique à conserver dans la base de données de l'enregistreur après une purge.
+  auto_purge: true # Défaut True - Purger automatiquement la base de données tous les soirs à 04h12 heure locale. La purge empêche la base de données de croître indéfiniment, ce qui prend de l'espace disque et peut ralentir Home Assistant.
+  commit_interval: 30 #(défaut 5) - Fréquence (en secondes) à laquelle les événements et les changements d'état sont validés dans la base de données. La valeur par défaut de 5 permet aux événements d'être validés presque immédiatement sans saccager le disque lorsqu'une tempête d'événements se produit. Augmenter cela réduira les E/S du disque et peut prolonger la durée de vie du disque (carte SD), le compromis étant que la base de données sera en retard (le journal de bord et l'historique ne seront pas en retard, car les modifications leur sont transmises immédiatement). S'il est défini sur 0(zéro), les validations sont effectuées dès que possible après le traitement d'un événement.
+  include:
+    domains:
+      - sensor
+     #- switch
+      - binary_sensor
+      - person
+      - climate
+      - group
+      - zone
+  exclude:
+    entity_globs:
+      - sensor.compteur_denergie_*
+      - sensor.*_power
+      - sensor.*_energy
+      - sensor.sun*
+      - sensor.*_rssi_numeric
+      - media_player.*
+      - light.*
+      - sensor.time_*
+      - sensor.date_*
+      - sensor.*_linkquality
+      - sensor.*_low_battery_level
+      - update.*
+      - switch.*
+    entities:
+      - sensor.last_boot
+      - sensor.time
+      - sensor.date  
+      - sensor.pression_arrosage
+      - sensor.home_assistant_v2_db_size
+      - sensor.home_assistant_v2_db_last_updated
+    event_types:
+      - service_removed
+      - service_executed
+      - platform_discovered
+      - homeassistant_start
+      - homeassistant_stop
+      - feedreader
+      - service_registered
+      - call_service
+      - component_loaded
+      - automation_triggered
+      - script_started
+      - timer_out_of_sync
+      - browser_mod      
+    domains:
+      - automation
+      - camera
+      - counter
+      - cover
+      - device_tracker
+      - input_boolean
+      - input_datetime
+      - media_player
+      - notify
+      - persistent_notification
+      - remote
+      - scene
+      - lock
+      - script_started
+      - sun
+      - updater
+      - weather
+      - zone
+      - select
+      - zwave    
+      #- alarm_panel
+      #- automation
+      #- script
+      #- shell_command

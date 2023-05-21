@@ -61,13 +61,11 @@
   description: ''
   trigger:
   - platform: time_pattern
-    seconds: /20
+    hours: /2
   condition:
-  - type: is_on
-    condition: device
-    device_id: 64bbc75616d4864596e1fd861c865904
-    entity_id: binary_sensor.workday
-    domain: binary_sensor
+  - condition: state
+    entity_id: binary_sensor.autoriser_miseajour_pronote
+    state: 'on'
   action:
   - service: shell_command.update_pronote
     data: {}

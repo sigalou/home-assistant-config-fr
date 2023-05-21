@@ -32,6 +32,7 @@ binary_sensor: !include binary_sensors.yaml
 mqtt: !include mqtt.yaml
 shell_command: !include shell_command.yaml
 template: !include templates.yaml
+recorder: !include recorder.yaml
 
 logger:
   default: info
@@ -107,50 +108,3 @@ rest:
 #      device_class: light
 
 #Base de données
-recorder:
-  include:
-    domains:
-      - sensor
-      - input_boolean
-      - input_datetime
-      - input_number
-      - input_select
-      - input_text
-      - binary_sensor
-      - light
-      - cover
-    entity_globs:
-      - sensor.carburant*
-  exclude:
-    domains:
-      - automation
-      - alarm_control_panel
-      - calendar
-      - camera
-      - climate
-      - device_tracker
-      - group
-      - media_player
-      - person
-      - proximity
-      - scene
-      - script
-      - sun
-      - switch
-      - timer
-      - vacuum
-      - weather
-      - zone
-      - zwave
-    event_types:
-      - automation_triggered
-      - script_started
-      - service_registered
-      - home_assistant_start
-      - home_assistant_stop
-      - home_assistant_stop
-    entities:
-      - sun.sun
-      - sensor.last_boot
-      - sensor.date
-      - sensor.time
