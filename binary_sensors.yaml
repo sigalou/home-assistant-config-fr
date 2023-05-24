@@ -1,14 +1,6 @@
   - platform: ping
     host: !secret ip_portail
     name: ping_portail
-    #friendly_name: Portail
-    #unique_id: binary_sensor.ping_portail
-    #scan_interval: 1 #interval en seconde, 5 min par défaut
-    #count: 2 #nb de paquet à envoyer entre 1 et 100, 5 par défaut
-
-
-
-
 
 
 

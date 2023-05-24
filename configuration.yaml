@@ -26,6 +26,7 @@ homeassistant:
   customize_glob: !include customize_glob.yaml 
 automation: !include automations.yaml
 script: !include scripts.yaml
+cover: !include covers.yaml
 scene: !include scenes.yaml
 sensor: !include sensors.yaml
 binary_sensor: !include binary_sensors.yaml
@@ -33,6 +34,8 @@ mqtt: !include mqtt.yaml
 shell_command: !include shell_command.yaml
 template: !include templates.yaml
 recorder: !include recorder.yaml
+
+cloud:
 
 logger:
   default: info

@@ -13,3 +13,4 @@ binary_sensor.*_registered:
   templates:
     icon: "if (state === 'off') return 'mdi:doorbell'; else return 'mdi:void';"
     icon_color: "if (state === 'off') return '#ff0000'; else return '#00b300';"
+    
