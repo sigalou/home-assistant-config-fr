@@ -1,3 +1,14 @@
+- id: "imagespourdiaporamaha"
+  alias: Monte le dossier photos du NAS
+  description: Monte le dossier photos du NAS
+  trigger:
+    - platform: homeassistant
+      event: start
+  condition: []
+  action:
+    - service: shell_command.mount_nas_folder
+      data: {}
+
 - id: '1681635429857'
   alias: Test Pushover
   description: ''
@@ -83,4 +94,82 @@
     data:
       message: 'Coralie a une nouvelle note : {{states(''sensor.pronote_eval_coralie'')}}'
       title: Nouvelle note
+  mode: single
+- id: '1685347832077'
+  alias: Relancer POE
+  description: Sera relancé si le Portier est Out
+  trigger:
+  - platform: time_pattern
+    minutes: /10
+  condition:
+  - condition: state
+    entity_id: binary_sensor.100_registered
+    state: 'off'
+  action:
+  - type: turn_off
+    device_id: 784836aca96c649c35b9d16de349f0b2
+    entity_id: switch.jus_poe
+    domain: switch
+  - service: persistent_notification.create
+    data:
+      message: Le lien Portier est Out
+      title: Relance du switch POE
+      notification_id: poe
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - type: turn_on
+    device_id: 784836aca96c649c35b9d16de349f0b2
+    entity_id: switch.jus_poe
+    domain: switch
+  mode: single
+- id: '1685385376606'
+  alias: Allume quand le portail s'ouvre
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - cover.portail
+    from: closed
+    to: open
+  condition:
+  - condition: state
+    entity_id: binary_sensor.nuit
+    state: 'on'
+  action:
+  - type: turn_on
+    device_id: 30ea5a34621f4e24fdc56954359ca35c
+    entity_id: light.lumieres_exterieures_du_preau
+    domain: light
+  - type: turn_on
+    device_id: 33af5ec4305fa7dc1184819a6ec51b6c
+    entity_id: light.lumieres_exterieures_garage
+    domain: light
+  mode: single
+- id: '1685385717013'
+  alias: Eteindre quand le portail se ferme
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - cover.portail
+    from: open
+    to: closed
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 33af5ec4305fa7dc1184819a6ec51b6c
+    entity_id: light.lumieres_exterieures_garage
+    domain: light
+  - delay:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+  - type: turn_off
+    device_id: 30ea5a34621f4e24fdc56954359ca35c
+    entity_id: light.lumieres_exterieures_du_preau
+    domain: light
   mode: single

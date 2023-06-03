@@ -1,1 +1,6 @@
-{}
+  accounts:
+    - account_name: moncalendrier # Do not use email address or spaces
+      client_id: !secret o365-client_id
+      client_secret: !secret o365-client_secret
+      alt_auth_method: False
+      enable_update: False

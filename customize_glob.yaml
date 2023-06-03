@@ -3,10 +3,15 @@ binary_sensor.fenetre*:
   templates:
     icon: "if (state === 'on') return 'mdi:window-open-variant'; else return 'mdi:window-closed-variant';"
     
-binary_sensor.ping_*:
+binary_sensor.ping_po*:
   templates:
     icon: "if (state === 'off') return 'mdi:close-network-outline'; else return 'mdi:void';"
     icon_color: "if (state === 'off') return '#ff0000'; else return '#00b300';"
+
+binary_sensor.ping_pi*:
+  templates:
+    icon: "if (state === 'off') return 'mdi:close-network-outline'; else return 'mdi:check-network-outline';"
+    #icon_color: "if (state === 'off') return '#ff0000'; else return '#00b300';"
 
 # Affichage d'une icone doorbell rouge si le lien SIP avec le portier est désenregistré d'Asterisk
 binary_sensor.*_registered:

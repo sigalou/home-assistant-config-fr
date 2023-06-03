@@ -6,7 +6,12 @@ switch:
     state_topic: "Aspirateur/Contact/Contact"
     payload_on: "1"
     payload_off: "0"
- 
+    
+
+####################################################################################################################################################################################################################################################################################################################################################
+####    Frigos
+#################################################################################################################################################################################################################################################################################################################################################### 
+
   - name: "Jus Frigo Cellier"
     unique_id: switch.jus_frigo_cellier
     command_topic: "FrigoCellier/gpio/12"
@@ -19,6 +24,12 @@ switch:
         name: "Frigo Cellier"
         identifiers: "frigocellier"
         
+        
+####################################################################################################################################################################################################################################################################################################################################################
+####    Pompe ARROSAGE
+####################################################################################################################################################################################################################################################################################################################################################  
+
+
   - name: "Jus Pompe Arrosage"
     unique_id: switch.jus_pompe_arrosage
     command_topic: "Pompe Arrosage/gpio/12"
@@ -30,6 +41,7 @@ switch:
     device:
         name: "Pompe Arrosage"
         identifiers: "pompearrosage"
+        
   - name: "Zone Rue Pompe Arrosage"
     unique_id: switch.zone_rue.pompe_arrosage
     command_topic: "Arrosage/gpio/12"
@@ -40,7 +52,8 @@ switch:
     device_class: outlet
     device:
         name: "Pompe Arrosage"
-        identifiers: "pompearrosage"        
+        identifiers: "pompearrosage" 
+        
   - name: "Zone Terrasse Pompe Arrosage"
     unique_id: switch.zone_terrasse.pompe_arrosage
     command_topic: "Arrosage/gpio/4"
@@ -51,7 +64,8 @@ switch:
     device_class: outlet
     device:
         name: "Pompe Arrosage"
-        identifiers: "pompearrosage"   
+        identifiers: "pompearrosage"  
+        
   - name: "Zone Piscine Pompe Arrosage"
     unique_id: switch.zone_piscine.pompe_arrosage
     command_topic: "Arrosage/gpio/5"
@@ -63,33 +77,121 @@ switch:
     device:
         name: "Pompe Arrosage"
         identifiers: "pompearrosage" 
-#  - name: "LED Bleue"
-#    unique_id: switch.pompe_arrosage_led
-#    command_topic: "Pompe Arrosage/gpio/13"
-#    payload_on: "0"
-#    payload_off: "1"    
-#    state_topic: "Pompe Arrosage/LedBleue/LedBleue"
-#    state_on: "1"
-#    state_off: "0"
-#    retain: true
-#    device:
-#        name: "Pompe Arrosage"
-#        identifiers: "pompearrosage"
-        
-binary_sensor:
 
-  - name: "Flotteur Pompe Arrosage"
-    unique_id: binary_sensor.flotteur_pompe_arrosage
-    state_topic: "Pompe Arrosage/GPIO5/GPIO5"
-    payload_on: "1"
-    payload_off: "0"
-    device_class: moisture
+####################################################################################################################################################################################################################################################################################################################################################
+####    Frigos
+#################################################################################################################################################################################################################################################################################################################################################### 
+
+        
+sensor:
+  - name: "Temperature Frigo Cellier"
+    unique_id: sensor.temperature_frigo_cellier
+    state_topic: "FrigoCellier/Sonde/Temperature"
+    state_class: measurement
+    unit_of_measurement: "°C"
+    device_class: temperature
+    device:
+        name: "Frigo Cellier"
+        identifiers: "frigocellier"
+
+  - name: "Humidité Frigo Cellier"
+    unique_id: sensor.humidite_frigo_cellier
+    state_topic: "FrigoCellier/Sonde/Humidity"
+    unit_of_measurement: "%"
+    device_class: humidity
+    device:
+        name: "Frigo Cellier"
+        identifiers: "frigocellier"
+        
+        
+####################################################################################################################################################################################################################################################################################################################################################
+####    Pompe ARROSAGE
+####################################################################################################################################################################################################################################################################################################################################################  
+
+        
+  - name: "Consommation Pompe Arrosage"
+    unique_id: sensor.consommation_pompe_arrosage
+    state_topic: "Pompe Arrosage/Consommation/Power"
+    unit_of_measurement: "W"
+    device_class: power
     device:
         name: "Pompe Arrosage"
         identifiers: "pompearrosage"
+  - name: "Temperature Cabanon Piscine"
+    unique_id: sensor.temperature_cabanon_piscine
+    state_topic: "Arrosage/sonde/Temperature"
+    unit_of_measurement: "°C"
+    device_class: temperature
+    device:
+        name: "Pompe Arrosage"
+        identifiers: "pompearrosage"
+  - name: "Humidité Cabanon Piscine"
+    unique_id: sensor.humidite_cabanon_piscine
+    state_topic: "Arrosage/sonde/Humidity"
+    unit_of_measurement: "%"
+    device_class: humidity
+    device:
+        name: "Pompe Arrosage"
+        identifiers: "pompearrosage"       
+  - name: "Pression Arrosage"
+    unique_id: sensor.pression_pompe_arrosage
+    state_topic: "Arrosage/Pression/Pression"
+    unit_of_measurement: "%"
+    device_class: pressure
+    device:
+        name: "Pompe Arrosage"
+        identifiers: "pompearrosage"          
+
+
+####################################################################################################################################################################################################################################################################################################################################################
+####    PISCINE
+#################################################################################################################################################################################################################################################################################################################################################### 
+
+
+  - name: "Température Eau Piscine"
+    unique_id: sensor.temperature_eau_piscine
+    state_topic: "Piscine/Piscine/TempEau"
+    unit_of_measurement: "°C"
+    state_class: measurement
+    device_class: temperature
+    device:
+      name: "Piscine"
+      identifiers: "piscine"      
+
+  - name: "Pression Filtre Piscine"
+    unique_id: sensor.pression_filtre_piscine
+    state_topic: "Piscine/Pression/Pression"
+    unit_of_measurement: "bar"
+    state_class: measurement
+    device_class: pressure
+    device:
+      name: "Piscine"
+      identifiers: "piscine" 
+
+  - name: "Redox Piscine"
+    unique_id: sensor.redox_piscine
+    state_topic: "Piscine/RedoxmV/RedoxmV"
+    unit_of_measurement: "mV"
+    state_class: measurement
+    device_class: voltage
+    device:
+      name: "Piscine"
+      identifiers: "piscine" 
+
+  - name: "Redox Piscine Brut"
+    unique_id: sensor.redox_brut_piscine
+    state_topic: "Piscine/RedoxA0/RedoxA0"
+    unit_of_measurement: "mV"
+    device_class: voltage
+    device:
+      name: "Piscine"
+      identifiers: "piscine"         
 
 
 
+####################################################################################################################################################################################################################################################################################################################################################
+####    Présences Récupérées de JEEDOM
+####################################################################################################################################################################################################################################################################################################################################################   
         
 device_tracker:
 
@@ -130,55 +232,62 @@ device_tracker:
         identifiers: "presences"
 
         
-sensor:
-  - name: "Temperature Frigo Cellier"
-    unique_id: sensor.temperature_frigo_cellier
-    state_topic: "FrigoCellier/Sonde/Temperature"
-    state_class: measurement
-    unit_of_measurement: "°C"
-    device_class: temperature
-    device:
-        name: "Frigo Cellier"
-        identifiers: "frigocellier"
 
-  - name: "Humidité Frigo Cellier"
-    unique_id: sensor.humidite_frigo_cellier
-    state_topic: "FrigoCellier/Sonde/Humidity"
-    unit_of_measurement: "%"
-    device_class: humidity
-    device:
-        name: "Frigo Cellier"
-        identifiers: "frigocellier"
         
-  - name: "Consommation Pompe Arrosage"
-    unique_id: sensor.consommation_pompe_arrosage
-    state_topic: "Pompe Arrosage/Consommation/Power"
-    unit_of_measurement: "W"
-    device_class: power
+####################################################################################################################################################################################################################################################################################################################################################
+####    Pompe ARROSAGE
+####################################################################################################################################################################################################################################################################################################################################################   
+       
+
+
+
+#  - name: "LED Bleue"
+#    unique_id: switch.pompe_arrosage_led
+#    command_topic: "Pompe Arrosage/gpio/13"
+#    payload_on: "0"
+#    payload_off: "1"    
+#    state_topic: "Pompe Arrosage/LedBleue/LedBleue"
+#    state_on: "1"
+#    state_off: "0"
+#    retain: true
+#    device:
+#        name: "Pompe Arrosage"
+#        identifiers: "pompearrosage"
+
+        
+binary_sensor:
+
+  - name: "Flotteur Pompe Arrosage"
+    unique_id: binary_sensor.flotteur_pompe_arrosage
+    state_topic: "Pompe Arrosage/GPIO5/GPIO5"
+    payload_on: "1"
+    payload_off: "0"
+    device_class: moisture
     device:
         name: "Pompe Arrosage"
         identifiers: "pompearrosage"
-  - name: "Temperature Cabanon Piscine"
-    unique_id: sensor.temperature_cabanon_piscine
-    state_topic: "Arrosage/sonde/Temperature"
-    unit_of_measurement: "°C"
-    device_class: temperature
+        
+####################################################################################################################################################################################################################################################################################################################################################
+####    PISCINE
+####################################################################################################################################################################################################################################################################################################################################################  
+
+
+  - name: "Electrolyse Piscine"
+    unique_id: binary_sensor.electrolyse_piscine
+    state_topic: "Piscine/Piscine/Electrolyse"
+    payload_on: "1"
+    payload_off: "0"
+    device_class: running
     device:
-        name: "Pompe Arrosage"
-        identifiers: "pompearrosage"
-  - name: "Humidité Cabanon Piscine"
-    unique_id: sensor.humidite_cabanon_piscine
-    state_topic: "Arrosage/sonde/Humidity"
-    unit_of_measurement: "%"
-    device_class: humidity
+        name: "Piscine"
+        identifiers: "piscine"
+        
+  - name: "Pompe Piscine"
+    unique_id: binary_sensor.pompe_piscine
+    state_topic: "Piscine/Eau/EauOff"
+    payload_on: "0"
+    payload_off: "1"
+    device_class: running
     device:
-        name: "Pompe Arrosage"
-        identifiers: "pompearrosage"       
-  - name: "Pression Arrosage"
-    unique_id: sensor.pression_pompe_arrosage
-    state_topic: "Arrosage/Pression/Pression"
-    unit_of_measurement: "%"
-    device_class: pressure
-    device:
-        name: "Pompe Arrosage"
-        identifiers: "pompearrosage"     
+        name: "Piscine"
+        identifiers: "piscine"

@@ -1,6 +1,17 @@
+# il faut penser à ajouter friendly_name dans le fichier customize.yaml
+
   - platform: ping
     host: !secret ip_portail
     name: ping_portail
 
-
-
+  - platform: ping
+    host: !secret ip_piscine
+    name: ping_piscine
+    
+  - platform: tod
+    name: "Il fait nuit"
+    unique_id: binary_sensor.nuit
+    after: sunset
+    after_offset: "-00:10"
+    before: sunrise
+    before_offset: "+00:10"

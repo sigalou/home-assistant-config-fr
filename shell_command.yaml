@@ -1,1 +1,5 @@
 update_pronote : python3 /config/python_scripts/pronote.py
+
+# Basculé dans Secrets.yaml mais la commande est de cette forme :
+#mount_nas_folder: mkdir -p /media/imagespourdiaporamaha;mount -t cifs -o vers=3.0,noserverino,username=ha,password=zu488oPho-tedddsvUv,domain=WORKGROUP //192.168.1.2/imagespourdiaporamaha /media/imagespourdiaporamaha
+mount_nas_folder: !secret shell_command-mount_nas_folder

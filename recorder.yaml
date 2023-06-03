@@ -13,7 +13,7 @@
   exclude:
     entity_globs:
       - sensor.compteur_denergie_*
-      - sensor.*_power
+#      - sensor.*_power
       - sensor.*_energy
       - sensor.sun*
       - sensor.*_rssi_numeric
@@ -25,6 +25,9 @@
       - sensor.*_low_battery_level
       - update.*
       - switch.*
+      - sensor.freebox_*
+      - sensor.*_battery 
+
     entities:
       - sensor.last_boot
       - sensor.time
@@ -32,6 +35,7 @@
       - sensor.pression_arrosage
       - sensor.home_assistant_v2_db_size
       - sensor.home_assistant_v2_db_last_updated
+      - sensor.sonoff_10014a73e9 #SPM
     event_types:
       - service_removed
       - service_executed

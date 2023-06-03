@@ -2,7 +2,7 @@
   - platform: template
     covers:
       portail:
-        device_class: garage
+        device_class: window
         friendly_name: "Portail"
         unique_id: cover.portail
         value_template: "{{ is_state('binary_sensor.portail_ouvert_ferme', 'on') }}"

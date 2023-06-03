@@ -2,3 +2,9 @@
 
 binary_sensor.ping_portail:
   friendly_name: "Portail"
+  
+binary_sensor.ping_piscine:
+  friendly_name: "Supervision de la Piscine"
+  
+  
+  

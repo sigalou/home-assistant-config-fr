@@ -21,6 +21,7 @@ homeassistant:
 
 
 
+
   customize_domain: !include customize_domain.yaml 
   customize: !include customize.yaml 
   customize_glob: !include customize_glob.yaml 
@@ -34,6 +35,7 @@ mqtt: !include mqtt.yaml
 shell_command: !include shell_command.yaml
 template: !include templates.yaml
 recorder: !include recorder.yaml
+o365: !include o365.yaml
 
 cloud:
 
@@ -104,10 +106,5 @@ rest:
           - "prix_valeur"
 
 
-#sonoff:
-#  devices:
-#    10008f7a3c:
-#      name: MonEquipement
-#      device_class: light
 
-#Base de données
+
